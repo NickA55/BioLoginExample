@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BioLoginExample.LoginPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="True">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="primary">DarkSlateGray</Color>
+            <Color x:Key="blue">DodgerBlue</Color>
+            <!--<Color x:Key="primary">#ff3467</Color>-->
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Spacing="10">
+
+                <Label
+                    BackgroundColor="{StaticResource blue}"
+                    FontSize="30"
+                    HeightRequest="110"
+                    HorizontalOptions="FillAndExpand"
+                    HorizontalTextAlignment="Center"
+                    Text="Bioauth Sample"
+                    TextColor="White"
+                    VerticalTextAlignment="Center" />
+
+                <Entry
+                    x:Name="txtUserName"
+                    Margin="20,40,20,0"
+                    HeightRequest="50"
+                    Placeholder="Username" />
+
+                <Entry
+                    x:Name="txtPassword"
+                    Margin="20,0,20,0"
+                    HeightRequest="50"
+                    IsPassword="true"
+                    Placeholder="Password" />
+
+                <Button
+                    x:Name="btnLogin"
+                    Margin="20,0,20,0"
+                    BackgroundColor="{StaticResource blue}"
+                    Clicked="btnLogin_Clicked"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Login"
+                    TextColor="White" />
+
+                <Button
+                    Margin="20,0,20,0"
+                    BackgroundColor="Gray"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Register"
+                    TextColor="White" />
+
+                <Label
+                    HorizontalOptions="Center"
+                    Text="Forgot password"
+                    TextColor="{StaticResource primary}"
+                    />
+
+                
+
+
+                <StackLayout VerticalOptions="EndAndExpand">
+                    <Label
+                        x:Name="lblVersion"
+                        Margin="5,0,0,5"
+                        Text="Version:" />
+
+                </StackLayout>
+
+            </StackLayout>
+
+        </ScrollView>
+
+
+    </ContentPage.Content>
+
+</ContentPage>
