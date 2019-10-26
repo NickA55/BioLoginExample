@@ -8,6 +8,8 @@ using Android.Support.V4.OS;
 using BioLoginExample.Droid;
 using BioLoginExample.Droid.BiometricHelpers;
 
+
+
 [assembly: Xamarin.Forms.Dependency(typeof(BiometricUtils))]
 namespace BioLoginExample.Droid
 {

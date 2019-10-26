@@ -4,7 +4,8 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:animations="clr-namespace:Rg.Plugins.Popup.Animations;assembly=Rg.Plugins.Popup"
-    x:Class="BioLoginExample.FingerprintPopup">
+    x:Class="BioLoginExample.FingerprintPopup"
+    BackgroundColor="MediumPurple">
 
 <pages:PopupPage.Animation>
         <animations:ScaleAnimation 
@@ -19,15 +20,38 @@
             HasBackgroundAnimation="True"/>
     </pages:PopupPage.Animation>
     <!--You can use any elements here which are extended from Xamarin.Forms.View-->
-    <StackLayout 
+
+    <Frame CornerRadius="20" VerticalOptions="Center" 
+           HorizontalOptions="Center"
+          WidthRequest="250"
+           HeightRequest="200">
+        <StackLayout Orientation="Vertical">
+            <Label Text="Use your fingerprint to login" 
+                   HorizontalTextAlignment="Center" 
+                   TextColor="Black"
+                   Margin="0,0,0,30"/>
+
+            <Image Source="fingerprint.png" 
+                   WidthRequest="50" HeightRequest="50"
+                   HorizontalOptions="Center" VerticalOptions="Center"/>
+
+            <Button Text="Cancel" TextColor="Black"
+                    VerticalOptions="EndAndExpand"/>
+
+        </StackLayout>
+    </Frame>
+    
+    <!--<StackLayout 
         VerticalOptions="Center" 
         HorizontalOptions="Center" 
-        Padding="20, 20, 20, 20"
+        Padding="30, 20, 30, 10"
         BackgroundColor="#e6e6e6">
-        <Label x:Name="lblPIN" Text="Enter Access PIN" FontSize="Large" HorizontalTextAlignment="Center" TextColor="Black"/>
-        <Entry x:Name="PINEntry" Keyboard="Numeric" IsPassword="true" HeightRequest="40" WidthRequest="200" BackgroundColor="White" 
-               HorizontalTextAlignment="Center"  MaxLength="6"></Entry>
-        <Button x:Name="btnSubmit" Text="Submit" FontSize="Large" IsVisible="true" TextColor="Black" ></Button>
+        <Label Text="Use your fingerprint to login" 
+               HorizontalTextAlignment="Center" 
+               TextColor="Black"
+               Margin="0,0,0,30"/>
         
-    </StackLayout>
+        <Button x:Name="btnSubmit" Text="Cancel" IsVisible="true" TextColor="Black" />
+
+    </StackLayout>-->
 </pages:PopupPage>
