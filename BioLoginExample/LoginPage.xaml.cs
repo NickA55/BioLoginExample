@@ -20,42 +20,12 @@ namespace BioLoginExample
         public LoginPage()
         {
             InitializeComponent();
-
-
             biometrics = DependencyService.Get<IBioAuth>();
-
-
-
-        }
-
-
-        private async Task<bool> LoginUserUsingBio()
-        {
-            var result = await biometrics.LoginAsync();
-
-            //await DisplayAlert("Result", $"Done with login {result}", "OK");
-
-            return result;
-
         }
 
         protected async void btnLogin_Clicked(object sender, EventArgs e)
         {
-            PopupNavigation.Instance.PushAsync(new FingerprintPopup());
-
-            
-
-            return;
-
-            // Biometric prompt
-            // TODO - Make sure username/password is saved first
-            if (biometrics.HasBiometrics() && (biometrics.HasFacial() || biometrics.HasFingerprint()))
-            {
-                await LoginUserUsingBio();
-            } else
-            {
-                await DisplayAlert("No Bueno", $"Sorry, no bio", "OK");
-            }
+            await PopupNavigation.Instance.PushAsync(new FingerprintPopup(), true);
         }
     }
 }

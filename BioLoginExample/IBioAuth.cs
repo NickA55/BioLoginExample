@@ -13,5 +13,7 @@ namespace BioLoginExample
         bool Login();
 
         Task<bool> LoginAsync();
+
+        void StopFingerAuth();
     }
 }

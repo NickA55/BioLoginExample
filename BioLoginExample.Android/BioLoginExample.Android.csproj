@@ -70,9 +70,8 @@
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BiometricUtils.cs" />
-    <Compile Include="BiometricHelpers\test2.cs" />
     <Compile Include="BiometricHelpers\CryptoObjectHelper.cs" />
-    <Compile Include="BiometricHelpers\MyAuthCallbackSample.cs" />
+    <Compile Include="BiometricHelpers\AuthResultsCallback.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />

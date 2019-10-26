@@ -148,5 +148,10 @@ namespace BioLoginExample.iOS
 
             return retVal.Task;
         }
+
+        public void StopFingerAuth()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

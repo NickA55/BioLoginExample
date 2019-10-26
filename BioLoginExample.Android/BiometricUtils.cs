@@ -42,18 +42,12 @@ namespace BioLoginExample.Droid
 
         public bool Login()
         {
-            throw new NotImplementedException();
-        }
-
-        public Task<bool> LoginAsync()
-        {
-
-            var retVal = new TaskCompletionSource<bool>();
+            var retVal = true;
 
             Android.Content.PM.Permission permissionResult = ContextCompat.CheckSelfPermission(context, Manifest.Permission.UseFingerprint);
             if (permissionResult == Android.Content.PM.Permission.Granted)
             {
-                
+
             }
             else
             {
@@ -67,7 +61,7 @@ namespace BioLoginExample.Droid
 
             const int flags = 0;
 
-            
+
             CryptoObjectHelper cryptoHelper = new CryptoObjectHelper();
 
             // cancellationSignal can be used to manually stop the fingerprint scanner. 
@@ -76,10 +70,25 @@ namespace BioLoginExample.Droid
             fingerprintManager = FingerprintManagerCompat.From(context);
 
             // AuthenticationCallback is a base class that will be covered later on in this guide.
-            FingerprintManagerCompat.AuthenticationCallback authenticationCallback = new MyAuthCallbackSample();
+            FingerprintManagerCompat.AuthenticationCallback authenticationCallback = new AuthResultsCallback();
 
             // Start the fingerprint scanner.
             fingerprintManager.Authenticate(cryptoHelper.BuildCryptoObject(), flags, _cancellationSignal, authenticationCallback, null);
+
+            return retVal;
+        }
+
+        public void StopFingerAuth()
+        {
+            if (_cancellationSignal != null && !_cancellationSignal.IsCanceled)
+            {
+                _cancellationSignal.Cancel();
+            }
+        }
+
+        public Task<bool> LoginAsync()
+        {
+            var retVal = new TaskCompletionSource<bool>();
 
             retVal.SetResult(true);
 

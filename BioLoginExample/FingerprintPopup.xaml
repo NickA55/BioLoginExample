@@ -36,22 +36,9 @@
                    HorizontalOptions="Center" VerticalOptions="Center"/>
 
             <Button Text="Cancel" TextColor="Black"
-                    VerticalOptions="EndAndExpand"/>
+                    VerticalOptions="EndAndExpand"
+                    Clicked="CancelClicked" />
 
         </StackLayout>
     </Frame>
-    
-    <!--<StackLayout 
-        VerticalOptions="Center" 
-        HorizontalOptions="Center" 
-        Padding="30, 20, 30, 10"
-        BackgroundColor="#e6e6e6">
-        <Label Text="Use your fingerprint to login" 
-               HorizontalTextAlignment="Center" 
-               TextColor="Black"
-               Margin="0,0,0,30"/>
-        
-        <Button x:Name="btnSubmit" Text="Cancel" IsVisible="true" TextColor="Black" />
-
-    </StackLayout>-->
 </pages:PopupPage>

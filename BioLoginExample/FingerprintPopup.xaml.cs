@@ -1,20 +1,91 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Rg.Plugins.Popup.Services;
 using Xamarin.Forms;
 
 namespace BioLoginExample
 {
     public partial class FingerprintPopup : Rg.Plugins.Popup.Pages.PopupPage
     {
+        IBioAuth biometrics;
+
         public FingerprintPopup()
         {
             InitializeComponent();
+
+            biometrics = DependencyService.Get<IBioAuth>();
+
+            MessagingCenter.Subscribe<string>(this, "GoodLogin", (str) =>
+            {
+                GoodLogin();
+            });
+
+            MessagingCenter.Subscribe<string>(this, "BadLogin", (str) =>
+            {
+                BadLogin();
+            });
+
         }
 
-        protected override void OnAppearing()
+        private async void GoodLogin()
+        {
+            biometrics.StopFingerAuth();
+
+            MessagingCenter.Unsubscribe<string>(this, "BadLogin");
+            MessagingCenter.Unsubscribe<string>(this, "GoodLogin");
+
+            await DisplayAlert("Login", "Good", "OK");
+
+            await PopupNavigation.Instance.PopAsync(true);
+        }
+
+        private async void BadLogin()
+        {
+
+            biometrics.StopFingerAuth();
+
+            MessagingCenter.Unsubscribe<string>(this, "BadLogin");
+            MessagingCenter.Unsubscribe<string>(this, "GoodLogin");
+
+            await DisplayAlert("Login", "Bad", "OK");
+
+            await PopupNavigation.Instance.PopAsync(true);
+        }
+
+
+        private void LoginUserUsingBio()
+        {
+            var result = biometrics.Login();
+            
+        }
+
+        protected async void CancelClicked(object sender, EventArgs e)
+        {
+            biometrics.StopFingerAuth();
+
+            MessagingCenter.Unsubscribe<string>(this, "BadLogin");
+            MessagingCenter.Unsubscribe<string>(this, "GoodLogin");
+
+            await DisplayAlert("Login", "Cancelled", "OK");
+
+            await PopupNavigation.Instance.PopAsync(true);
+        }
+
+        protected async override void OnAppearing()
         {
             base.OnAppearing();
+
+            // Biometric prompt
+            // TODO - Make sure username/password is saved first
+            if (biometrics.HasBiometrics() && (biometrics.HasFacial() || biometrics.HasFingerprint()))
+            {
+                LoginUserUsingBio();
+            }
+            else
+            {
+                await DisplayAlert("No Bueno", $"Sorry, no bio", "OK");
+            }
         }
 
         protected override void OnDisappearing()
