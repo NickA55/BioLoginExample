@@ -9,13 +9,10 @@ namespace BioLoginExample.Droid.BiometricHelpers
 {
     public class CryptoObjectHelper
     {
-        // This can be key name you want. Should be unique for the app.
-        static readonly string KEY_NAME = "com.xamarin.android.sample.fingerprint_authentication_key";
+        static readonly string KEY_NAME = "com.catamountsoftware.com.fingerprint_auth_key";
 
-        // We always use this keystore on Android.
         static readonly string KEYSTORE_NAME = "AndroidKeyStore";
 
-        // Should be no need to change these values.
         static readonly string KEY_ALGORITHM = KeyProperties.KeyAlgorithmAes;
         static readonly string BLOCK_MODE = KeyProperties.BlockModeCbc;
         static readonly string ENCRYPTION_PADDING = KeyProperties.EncryptionPaddingPkcs7;

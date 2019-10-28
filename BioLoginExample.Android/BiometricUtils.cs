@@ -45,34 +45,32 @@ namespace BioLoginExample.Droid
             var retVal = true;
 
             Android.Content.PM.Permission permissionResult = ContextCompat.CheckSelfPermission(context, Manifest.Permission.UseFingerprint);
+
             if (permissionResult == Android.Content.PM.Permission.Granted)
             {
 
             }
             else
             {
-                // No permission. Go and ask for permissions and don't start the scanner. See
+                // No permission.
                 // https://developer.android.com/training/permissions/requesting.html
             }
-
-
 
             FingerprintManagerCompat fingerprintManager = FingerprintManagerCompat.From(context);
 
             const int flags = 0;
 
-
             CryptoObjectHelper cryptoHelper = new CryptoObjectHelper();
 
-            // cancellationSignal can be used to manually stop the fingerprint scanner. 
+            // cancellationSignal - stop scanning
             _cancellationSignal = new Android.Support.V4.OS.CancellationSignal();
 
             fingerprintManager = FingerprintManagerCompat.From(context);
 
-            // AuthenticationCallback is a base class that will be covered later on in this guide.
+            // Callback method
             FingerprintManagerCompat.AuthenticationCallback authenticationCallback = new AuthResultsCallback();
 
-            // Start the fingerprint scanner.
+            // Start scanning
             fingerprintManager.Authenticate(cryptoHelper.BuildCryptoObject(), flags, _cancellationSignal, authenticationCallback, null);
 
             return retVal;
@@ -95,6 +93,4 @@ namespace BioLoginExample.Droid
             return retVal.Task;
         }
     }
-
-
 }
