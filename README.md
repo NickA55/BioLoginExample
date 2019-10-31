@@ -28,3 +28,5 @@ You will need to create your own UI in Android for the Fingerprint prompt
 ---
 
 ## Notes
+* Username and password should be saved securily on the device.  See Xamarin.Essentials secure storage, or just write your own crypto (I will update this project with a sample)
+* It's good practuve to continue to authenticate agaist the server (if your app needs it)
